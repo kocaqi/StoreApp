@@ -3,7 +3,6 @@ package com.localweb.thelogin.thelogin.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @IdClass(OrderProductKey.class)

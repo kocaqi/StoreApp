@@ -1,9 +1,7 @@
 package com.localweb.thelogin.thelogin.controller;
 
 import com.localweb.thelogin.thelogin.dao.ProductRepository;
-import com.localweb.thelogin.thelogin.entities.Order;
 import com.localweb.thelogin.thelogin.entities.Product;
-import com.localweb.thelogin.thelogin.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

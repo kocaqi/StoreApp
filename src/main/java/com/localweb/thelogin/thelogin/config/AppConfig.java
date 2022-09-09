@@ -1,13 +1,9 @@
 package com.localweb.thelogin.thelogin.config;
 
 import java.beans.PropertyVetoException;
-import java.util.Objects;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +18,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.localweb.thelogin.thelogin")
-/*@EntityScan(basePackages = "com.localweb.myloginapp")
-@EnableAutoConfiguration*/
 @PropertySource("classpath:persistence-mysql.properties")
 public class AppConfig {
 	
