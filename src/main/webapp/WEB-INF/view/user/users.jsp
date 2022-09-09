@@ -30,16 +30,12 @@ Users:
 		<td>${user.firstName}</td>
         <td>${user.lastName}</td>
         <td>${user.email}</td>
-		<td>
-			<c:forEach items="${user.roles}" var="role">
-				${role.name}
-			</c:forEach>
-		</td>
+		<td>${user.roles}</td>
         <td>${user.dateCreated}</td>
         <td>${user.dateUpdated}</td>
 		<td>
 			<a href="#">Update</a>
-			|
+			||
 			<a href="#">Delete</a>
 		</td>
 	</tr>

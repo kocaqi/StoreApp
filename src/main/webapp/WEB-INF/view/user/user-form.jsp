@@ -19,10 +19,10 @@ Add User
     <form:input type="text" path="lastName" placeholder="Last Name"/> <br>
     <form:input type="text" path="email" placeholder="Email"/> <br>
     <form:input type="password" path="password" placeholder="Password"/> <br>
-    <form:select path="role">
+    <select name="role">
         <option value="ROLE_ADMIN">Admin</option>
         <option value="ROLE_OPERATOR">Operator</option>
-    </form:select>
+    </select>
     <input type="submit" value="Save"/>
 </form:form>
 
