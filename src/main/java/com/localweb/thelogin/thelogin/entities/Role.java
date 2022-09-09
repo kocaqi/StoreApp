@@ -1,4 +1,3 @@
-/*
 package com.localweb.thelogin.thelogin.entities;
 
 import javax.persistence.*;
@@ -11,18 +10,23 @@ public class Role {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @OneToOne(mappedBy = "role", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private User user;
-
-    @Column(name = "role")
-    private String roleName;
+    @Column(name = "name")
+    private String name;
 
     public Role() {
     }
 
-    public Role(int id, String roleName) {
+    public Role(int id) {
         this.id = id;
-        this.roleName = roleName;
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
+
+    public Role(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {
@@ -33,28 +37,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Authority{" +
-                "id=" + id +
-                ", roleName='" + roleName + '\'' +
-                '}';
+    public void setName(String name) {
+        this.name = name;
     }
 }
-*/

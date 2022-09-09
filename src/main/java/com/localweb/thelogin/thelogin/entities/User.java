@@ -2,6 +2,7 @@ package com.localweb.thelogin.thelogin.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,27 +11,27 @@ public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "date_created")
+    @Column(name = "date_created", nullable = false)
     private LocalDate dateCreated;
-    @Column(name = "date_updated")
+    @Column(name = "date_updated", nullable = false)
     private LocalDate dateUpdated;
 
-    /*@OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name="role")*/
-    @Column(name = "role")
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
 
-    @Column(name="enabled")
+    @Column(name="enabled", nullable = false)
     private int enabled;
 
     @OneToMany(mappedBy = "theUser", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -119,12 +120,16 @@ public class User {
         this.orders = orders;
     }
 
-    public String getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Role role){
+        this.roles.add(role);
     }
 
     @Override
@@ -137,7 +142,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", dateCreated=" + dateCreated +
                 ", dateUpdated=" + dateUpdated +
-                ", role=" + role +
+                ", roles=" + roles +
                 ", enabled=" + enabled +
                 ", clients=" + clients +
                 ", orders=" + orders +

@@ -19,7 +19,7 @@ Users:
 		<th>Fist Name</th>
 		<th>Last Name</th>
 		<th>Email</th>
-		<th>Role</th>
+		<th>Roles</th>
 		<th>Date Created</th>
 		<th>Date Updated</th>
 		<th>Action</th>
@@ -30,7 +30,11 @@ Users:
 		<td>${user.firstName}</td>
         <td>${user.lastName}</td>
         <td>${user.email}</td>
-		<td>${user.role}</td>
+		<td>
+			<c:forEach items="${user.roles}" var="role">
+				${role.name}
+			</c:forEach>
+		</td>
         <td>${user.dateCreated}</td>
         <td>${user.dateUpdated}</td>
 		<td>

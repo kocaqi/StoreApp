@@ -3,14 +3,13 @@ package com.localweb.thelogin.thelogin.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.localweb.thelogin.thelogin.dao.RoleRepository;
+import com.localweb.thelogin.thelogin.entities.Role;
 import com.localweb.thelogin.thelogin.entities.User;
 import com.localweb.thelogin.thelogin.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/users")
@@ -18,6 +17,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @GetMapping("/")
     public String showUsers(Model model) {
@@ -35,10 +37,12 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveUser(@ModelAttribute("user") User user,
+                           @PathVariable("role") String role) {
         user.setDateCreated(LocalDate.now());
         user.setDateUpdated(LocalDate.now());
         user.setEnabled(1);
+        user.addRole(roleRepository.findRoleByName(role));
         userRepository.save(user);
         return "redirect:/users/";
     }

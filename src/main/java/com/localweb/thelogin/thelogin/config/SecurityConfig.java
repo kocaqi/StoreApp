@@ -76,11 +76,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/").hasAnyRole("ROLE_ADMIN", "ROLE_OPERATOR")
-				.antMatchers("/users/**").hasAnyRole("ROLE_ADMIN")
-				.antMatchers("/clients/**").hasAnyRole("ROLE_ADMIN", "ROLE_OPERATOR")
-				.antMatchers("/products/**").hasAnyRole("ROLE_ADMIN")
-				.antMatchers("/orders/**").hasAnyRole("ROLE_ADMIN", "ROLE_OPERATOR")
+				.antMatchers("/").hasAnyRole("ADMIN", "OPERATOR")
+				.antMatchers("/users/**").hasAnyRole("ADMIN")
+				.antMatchers("/clients/**").hasAnyRole("ADMIN", "OPERATOR")
+				.antMatchers("/products/**").hasAnyRole("ADMIN")
+				.antMatchers("/orders/**").hasAnyRole("ADMIN", "OPERATOR")
 			.and()
 				.formLogin().loginPage("/login")
 				.loginProcessingUrl("/authenticateTheUser").permitAll()

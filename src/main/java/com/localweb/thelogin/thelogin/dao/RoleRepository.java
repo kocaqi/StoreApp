@@ -1,4 +1,3 @@
-/*
 package com.localweb.thelogin.thelogin.dao;
 
 import com.localweb.thelogin.thelogin.entities.Role;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
-    @Query("select r from Role r where r.user=?1")
-    Role findRoleByUser(User user);
+    public Role findRoleByName(String name);
 
 }
-*/
