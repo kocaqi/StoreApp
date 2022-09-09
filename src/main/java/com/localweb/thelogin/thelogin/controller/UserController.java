@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    UserRepository userService;
+    UserService userService;
 
     @Autowired
-    RoleRepository roleService;
+    RoleService roleService;
 
     @GetMapping("/")
     public String showUsers(Model model) {

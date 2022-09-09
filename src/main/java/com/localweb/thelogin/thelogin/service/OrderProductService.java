@@ -1,8 +1,12 @@
 package com.localweb.thelogin.thelogin.service;
 
 import com.localweb.thelogin.thelogin.dao.OrderProductRepository;
+import com.localweb.thelogin.thelogin.entities.Order;
+import com.localweb.thelogin.thelogin.entities.OrderProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderProductService {
@@ -12,5 +16,9 @@ public class OrderProductService {
 
     public OrderProductService(OrderProductRepository orderProductRepository) {
         this.orderProductRepository = orderProductRepository;
+    }
+
+    public List<OrderProduct> findProductsByOrder(Order order) {
+        return orderProductRepository.findProductsByOrder(order);
     }
 }

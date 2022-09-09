@@ -1,7 +1,7 @@
 package com.localweb.thelogin.thelogin.controller;
 
-import com.localweb.thelogin.thelogin.dao.ClientRepository;
 import com.localweb.thelogin.thelogin.entities.Client;
+import com.localweb.thelogin.thelogin.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +18,12 @@ import java.util.List;
 public class ClientController {
 
 	@Autowired
-	ClientRepository clientRepository;
+	ClientService clientService;
 
 	@GetMapping("/")
 	public String showClients(Model model) {
 
-		List<Client> clients = clientRepository.findAll();
+		List<Client> clients = clientService.findAll();
 		model.addAttribute("clients", clients);
 
 		return "client/clients";
@@ -40,7 +40,7 @@ public class ClientController {
 	public String saveUser(@ModelAttribute("client") Client client) {
 		client.setDateCreated(LocalDate.now());
 		client.setDateUpdated(LocalDate.now());
-		clientRepository.save(client);
+		clientService.save(client);
 		return "redirect:/clients/";
 	}
 	

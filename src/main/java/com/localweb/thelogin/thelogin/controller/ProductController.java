@@ -1,7 +1,7 @@
 package com.localweb.thelogin.thelogin.controller;
 
-import com.localweb.thelogin.thelogin.dao.ProductRepository;
 import com.localweb.thelogin.thelogin.entities.Product;
+import com.localweb.thelogin.thelogin.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +15,12 @@ import java.util.List;
 public class ProductController {
 
 	@Autowired
-	ProductRepository productRepository;
+	ProductService productService;
 	
 	@GetMapping("/")
 	public String showProducts(Model model) {
 
-		List<Product> products = productRepository.findAll();
+		List<Product> products = productService.findAll();
 		model.addAttribute("products", products);
 
 		return "product/products";
@@ -37,7 +37,7 @@ public class ProductController {
 	public String saveProduct(@ModelAttribute("product") Product product){
 		product.setDateCreated(LocalDate.now());
 		product.setDateUpdated(LocalDate.now());
-		productRepository.save(product);
+		productService.save(product);
 		return "redirect:/products/";
 	}
 
