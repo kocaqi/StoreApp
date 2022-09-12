@@ -11,13 +11,17 @@
 </head>
 <body>
 
-Add Client
+Add Order
 
-<%--@elvariable id="client" type=""--%>
-<form:form action="saveClient" modelAttribute="client" method="POST">
-    <form:input type="text" path="firstName" placeholder="First Name"/> <br>
-    <form:input type="text" path="lastName" placeholder="Last Name"/> <br>
-    <form:input type="text" path="email" placeholder="Email"/> <br>
+<%--@elvariable id="order" type=""--%>
+<form:form action="saveOrder" modelAttribute="order" method="POST">
+
+    <%--Register the client--%>
+
+    <%--Add products one by one--%>
+        <%--Enter product name--%>
+        <%--Enter product quantity--%>
+
     <input type="submit" value="Save"/>
 </form:form>
 

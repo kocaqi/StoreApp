@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
@@ -21,15 +23,19 @@ public class OrderController {
     @Autowired
     OrderProductService orderProductService;
 
-    @GetMapping("/orders")
+    @GetMapping("/")
     public String showOrders(Model model) {
         List<Order> orders = orderService.findAll();
-        List<OrderProduct> orderProducts = new ArrayList<>();
         for (Order order : orders) {
             order.setOrders(orderProductService.findProductsByOrder(order));
         }
         model.addAttribute("orders", orders);
         return "order/orders";
+    }
+
+    @GetMapping("/add")
+    public String add(){
+        return "order/order-form";
     }
 
 }

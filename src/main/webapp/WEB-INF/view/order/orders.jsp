@@ -11,7 +11,7 @@
 <body>
 Orders:
 <br>
-<a href="#">Add a new Order</a>
+<a href="/orders/add">Add a new Order</a>
 
 <hr>
 

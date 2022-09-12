@@ -1,8 +1,10 @@
 package com.localweb.thelogin.thelogin.controller;
 
 import com.localweb.thelogin.thelogin.entities.Client;
+import com.localweb.thelogin.thelogin.entities.User;
 import com.localweb.thelogin.thelogin.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +39,11 @@ public class ClientController {
 	}
 
 	@PostMapping("/saveClient")
-	public String saveUser(@ModelAttribute("client") Client client) {
+	public String saveUser(@ModelAttribute("client") Client client,
+						   @AuthenticationPrincipal User user) {
 		client.setDateCreated(LocalDate.now());
 		client.setDateUpdated(LocalDate.now());
+		client.setTheUser(user);
 		clientService.save(client);
 		return "redirect:/clients/";
 	}
