@@ -27,7 +27,7 @@ Products:
         <tr>
 
             <c:url var="updateLink" value="/products/update">
-
+                <c:param name="productId" value="${product.id}"/>
             </c:url>
 
             <td>${product.name}</td>
@@ -36,7 +36,7 @@ Products:
             <td>${product.dateCreated}</td>
             <td>${product.dateUpdated}</td>
             <td>
-                <a href="/products/update">Update</a>
+                <a href="${updateLink}">Update</a>
                 |
                 <a href="#">Delete</a>
             </td>

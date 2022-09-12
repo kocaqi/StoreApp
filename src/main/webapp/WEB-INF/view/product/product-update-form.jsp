@@ -11,14 +11,15 @@
 </head>
 <body>
 
-Add Product
+Update Product
 
 <%--@elvariable id="product" type=""--%>
-<form:form action="saveProduct" modelAttribute="product" method="POST">
+<form:form action="updateProduct" modelAttribute="product" method="POST">
     <form:hidden path="id"/>
-    <form:input type="text" path="name" placeholder="Name"/> <br>
-    <form:input type="number" path="price" placeholder="Price"/> <br>
-    <form:input type="number" path="stock" placeholder="Stock"/> <br>
+    <form:hidden path="dateCreated"/>
+    Name: <form:input type="text" path="name" placeholder="Name"/> <br>
+    Price: <form:input type="number" path="price" placeholder="Price"/> <br>
+    Stock: <form:input type="number" path="stock" placeholder="Stock"/> <br>
     <input type="submit" value="Save"/>
 </form:form>
 
