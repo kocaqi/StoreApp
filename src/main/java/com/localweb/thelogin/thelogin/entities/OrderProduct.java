@@ -13,7 +13,7 @@ public class OrderProduct {
     @JoinColumn(name="order_id")
     Order order;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Id
     @JoinColumn(name="product_id")
     Product product;

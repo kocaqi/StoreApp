@@ -30,6 +30,10 @@ Products:
                 <c:param name="productId" value="${product.id}"/>
             </c:url>
 
+            <c:url var="deleteLink" value="/products/delete">
+                <c:param name="productId" value="${product.id}"/>
+            </c:url>
+
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.stock}</td>
@@ -38,7 +42,7 @@ Products:
             <td>
                 <a href="${updateLink}">Update</a>
                 |
-                <a href="#">Delete</a>
+                <a href="${deleteLink}">Delete</a>
             </td>
         </tr>
     </c:forEach>

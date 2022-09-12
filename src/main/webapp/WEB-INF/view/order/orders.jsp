@@ -26,10 +26,6 @@ Orders:
         Price/Unit: ${product.product.price} <br>
         Total for this product: ${product.amount} <br> <br>
     </c:forEach>
-    <%--<c:forEach items="${productsInTheOrder}" var="product">
-        ${product.name} <br>
-        ${product.quantity} X ${product.price} = ${product.amount} <br>
-    </c:forEach>--%>
     Total for this order: ${order.amount} <br>
     Date Created: ${order.dateCreated} <br>
     Last Update: ${order.dateUpdated} <br>

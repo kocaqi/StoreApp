@@ -24,7 +24,7 @@ public class Product {
     @Column(name = "date_updated")
     private LocalDate dateUpdated;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderProduct> orders;
 
     public Product() {

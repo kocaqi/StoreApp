@@ -44,7 +44,6 @@ public class ProductController {
 	@GetMapping("/update")
 	public String updateProduct(@RequestParam("productId") int id, Model model){
 		Product product = productService.getProduct(id);
-		LocalDate dateCreated = product.getDateCreated();
 		model.addAttribute("product", product);
 		return "product/product-update-form";
 	}
@@ -53,6 +52,13 @@ public class ProductController {
 	public String updateProduct(@ModelAttribute("product") Product product){
 		product.setDateUpdated(LocalDate.now());
 		productService.save(product);
+		return "redirect:/products/";
+	}
+
+	@GetMapping("/delete")
+	public String delete(@RequestParam("productId") int id){
+		Product product = productService.getProduct(id);
+		productService.delete(product);
 		return "redirect:/products/";
 	}
 
