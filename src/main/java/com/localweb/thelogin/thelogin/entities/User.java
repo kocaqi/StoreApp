@@ -34,7 +34,7 @@ public class User {
     @Column(name="enabled", nullable = false)
     private int enabled;
 
-    @OneToMany(mappedBy = "theUser", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "theUser", cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Client> clients;
 
     @OneToMany(mappedBy = "user_id", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

@@ -25,13 +25,18 @@ Products:
 
     <c:forEach items="${products}" var="product">
         <tr>
+
+            <c:url var="updateLink" value="/products/update">
+
+            </c:url>
+
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.stock}</td>
             <td>${product.dateCreated}</td>
             <td>${product.dateUpdated}</td>
             <td>
-                <a href="#">Update</a>
+                <a href="/products/update">Update</a>
                 |
                 <a href="#">Delete</a>
             </td>
