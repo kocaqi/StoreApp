@@ -22,7 +22,8 @@ Update User
     Last Name: <form:input type="text" path="lastName" placeholder="Last Name"/> <br>
     Email: <form:input type="text" path="email" placeholder="Email"/> <br>
     Password: <form:input type="password" path="password" placeholder="Password"/> <br>
-    Role: <select name="role">
+    Role:
+    <select name="role">
         <option value="ROLE_ADMIN">Admin</option>
         <option value="ROLE_OPERATOR">Operator</option>
     </select>

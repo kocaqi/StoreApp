@@ -30,7 +30,6 @@ Users:
 		<c:url var="updateLink" value="/users/update">
 			<c:param name="userId" value="${user.id}"/>
 		</c:url>
-
 		<c:url var="deleteLink" value="/users/delete">
 			<c:param name="userId" value="${user.id}"/>
 		</c:url>

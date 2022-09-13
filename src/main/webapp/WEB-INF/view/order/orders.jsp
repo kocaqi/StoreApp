@@ -20,11 +20,11 @@ Orders:
     User: ${order.user_id.firstName} ${order.user_id.lastName}<br>
     Client: ${order.client_id.firstName} ${order.client_id.lastName} <br> <br>
     Products:  <br> <br>
-    <c:forEach items="${order.orders}" var="product">
-        ${product.product.name} <br>
-        Quantity: ${product.quantity} <br>
-        Price/Unit: ${product.product.price} <br>
-        Total for this product: ${product.amount} <br> <br>
+    <c:forEach items="${order.orders}" var="client">
+        ${client.product.name} <br>
+        Quantity: ${client.quantity} <br>
+        Price/Unit: ${client.product.price} <br>
+        Total for this product: ${client.amount} <br> <br>
     </c:forEach>
     Total for this order: ${order.amount} <br>
     Date Created: ${order.dateCreated} <br>

@@ -42,7 +42,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/update")
-	public String updateProduct(@RequestParam("productId") int id, Model model){
+	public String update(@RequestParam("productId") int id, Model model){
 		Product product = productService.getProduct(id);
 		model.addAttribute("product", product);
 		return "product/product-update-form";

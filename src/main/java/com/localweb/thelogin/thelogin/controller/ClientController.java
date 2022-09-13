@@ -5,19 +5,13 @@ import com.localweb.thelogin.thelogin.entities.User;
 import com.localweb.thelogin.thelogin.service.ClientService;
 import com.localweb.thelogin.thelogin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -54,6 +48,27 @@ public class ClientController {
 		User user = userService.findUserByEmail(email);
 		client.setTheUser(user);
 		clientService.save(client);
+		return "redirect:/clients/";
+	}
+
+	@GetMapping("/update")
+	public String update(@RequestParam("clientId") int id, Model model){
+		Client client = clientService.getClient(id);
+		model.addAttribute("client", client);
+		return "client/client-update-form";
+	}
+
+	@PostMapping("/updateClient")
+	public String updateClient(@RequestParam HashMap<String, String> data){
+		System.out.println(data);
+		Client client = clientService.getClient(Integer.parseInt(data.get("id")));
+		if(client != null){
+			client.setFirstName(data.get("firstName"));
+			client.setLastName(data.get("lastName"));
+			client.setEmail(data.get("email"));
+			client.setDateUpdated(LocalDate.now());
+			clientService.save(client);
+		}
 		return "redirect:/clients/";
 	}
 	

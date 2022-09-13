@@ -18,7 +18,7 @@ public class Client {
     int id;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="user_id")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private User theUser;
     @Column(name = "first_name")
     private String firstName;
@@ -32,6 +32,7 @@ public class Client {
     private LocalDate dateUpdated;
 
     @OneToMany(mappedBy = "client_id", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders;
 
     public Client() {

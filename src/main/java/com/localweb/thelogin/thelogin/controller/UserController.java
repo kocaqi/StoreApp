@@ -50,15 +50,14 @@ public class UserController {
     }
 
     @GetMapping("/update")
-    public String updateUser(@RequestParam("userId") int id, Model model){
+    public String update(@RequestParam("userId") int id, Model model){
         User user = userService.getUser(id);
-        System.out.println(user);
         model.addAttribute("user", user);
         return "user/user-update-form";
     }
 
     @PostMapping("/updateUser")
-    public String updateProduct(@ModelAttribute("user") User user){
+    public String updateUser(@ModelAttribute("user") User user){
         user.setDateUpdated(LocalDate.now());
         userService.save(user);
         return "redirect:/users/";
