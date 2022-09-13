@@ -1,6 +1,9 @@
 
 package com.localweb.thelogin.thelogin.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,6 +18,7 @@ public class Client {
     int id;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="user_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private User theUser;
     @Column(name = "first_name")
     private String firstName;

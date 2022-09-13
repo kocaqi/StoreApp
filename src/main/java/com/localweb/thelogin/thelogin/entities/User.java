@@ -1,5 +1,8 @@
 package com.localweb.thelogin.thelogin.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,17 +16,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
-    @Column(name = "date_created", nullable = false)
+    @Column(name = "date_created")
     private LocalDate dateCreated;
-    @Column(name = "date_updated", nullable = false)
+    @Column(name = "date_updated")
     private LocalDate dateUpdated;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -31,13 +34,17 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
-    @Column(name="enabled", nullable = false)
+    @Column(name="enabled")
     private int enabled;
 
     @OneToMany(mappedBy = "theUser", cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Client> clients;
 
-    @OneToMany(mappedBy = "user_id", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "user_id",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                    CascadeType.PERSIST, CascadeType.REFRESH})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders;
 
     public int getId() {

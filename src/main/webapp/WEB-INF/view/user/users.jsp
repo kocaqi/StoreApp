@@ -27,6 +27,13 @@ Users:
 	
 	<c:forEach items="${users}" var="user">
 	<tr>
+		<c:url var="updateLink" value="/users/update">
+			<c:param name="userId" value="${user.id}"/>
+		</c:url>
+
+		<c:url var="deleteLink" value="/users/delete">
+			<c:param name="userId" value="${user.id}"/>
+		</c:url>
 		<td>${user.firstName}</td>
         <td>${user.lastName}</td>
         <td>${user.email}</td>
@@ -34,9 +41,9 @@ Users:
         <td>${user.dateCreated}</td>
         <td>${user.dateUpdated}</td>
 		<td>
-			<a href="#">Update</a>
+			<a href="${updateLink}">Update</a>
 			||
-			<a href="#">Delete</a>
+			<a href="${deleteLink}">Delete</a>
 		</td>
 	</tr>
 	</c:forEach>

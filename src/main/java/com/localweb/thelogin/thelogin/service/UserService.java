@@ -50,5 +50,12 @@ public class UserService{
 		return userRepository.findUserByFirstName(name);
 	}
 
+    public User getUser(int id) {
+		return userRepository.getUserById(id);
+    }
+
+    public void delete(User user) {
+		userRepository.delete(user);
+    }
 }
 

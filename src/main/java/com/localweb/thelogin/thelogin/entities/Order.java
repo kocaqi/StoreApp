@@ -1,6 +1,9 @@
 
 package com.localweb.thelogin.thelogin.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,10 +16,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="user_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private User user_id;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="client_id")
     private Client client_id;
     @Column(name = "amount")
@@ -31,7 +37,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(User user_id, Client client_id, double amount, LocalDate dateCreated, LocalDate dateUpdated) {
+    public Order(User user_id, Client client_id, double amount, LocalDate dateCreated,
+                 LocalDate dateUpdated) {
         this.user_id = user_id;
         this.client_id = client_id;
         this.amount = amount;

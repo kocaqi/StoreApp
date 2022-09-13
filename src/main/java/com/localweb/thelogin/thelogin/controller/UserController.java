@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.localweb.thelogin.thelogin.dao.RoleRepository;
 import com.localweb.thelogin.thelogin.dao.UserRepository;
+import com.localweb.thelogin.thelogin.entities.Product;
 import com.localweb.thelogin.thelogin.entities.User;
 import com.localweb.thelogin.thelogin.service.RoleService;
 import com.localweb.thelogin.thelogin.service.UserService;
@@ -45,6 +46,28 @@ public class UserController {
         user.setEnabled(1);
         user.addRole(roleService.findRoleByName(role));
         userService.save(user);
+        return "redirect:/users/";
+    }
+
+    @GetMapping("/update")
+    public String updateUser(@RequestParam("userId") int id, Model model){
+        User user = userService.getUser(id);
+        System.out.println(user);
+        model.addAttribute("user", user);
+        return "user/user-update-form";
+    }
+
+    @PostMapping("/updateUser")
+    public String updateProduct(@ModelAttribute("user") User user){
+        user.setDateUpdated(LocalDate.now());
+        userService.save(user);
+        return "redirect:/users/";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("userId") int id){
+        User user = userService.getUser(id);
+        userService.delete(user);
         return "redirect:/users/";
     }
 
