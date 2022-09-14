@@ -16,9 +16,9 @@ Update Client
 <%--@elvariable id="client" type=""--%>
 <form:form action="updateClient" modelAttribute="client" method="POST">
   <form:hidden path="id"/>
-  <form:input type="text" path="firstName" placeholder="First Name"/> <br>
-  <form:input type="text" path="lastName" placeholder="Last Name"/> <br>
-  <form:input type="text" path="email" placeholder="Email"/> <br>
+  First Name: <form:input type="text" path="firstName" placeholder="First Name"/> <br>
+  Last Name: <form:input type="text" path="lastName" placeholder="Last Name"/> <br>
+  Email: <form:input type="text" path="email" placeholder="Email"/> <br>
   <input type="submit" value="Save"/>
 </form:form>
 
