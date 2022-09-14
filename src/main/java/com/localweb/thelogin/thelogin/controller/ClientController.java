@@ -71,5 +71,12 @@ public class ClientController {
 		}
 		return "redirect:/clients/";
 	}
+
+	@GetMapping("/delete")
+	public String delete(@RequestParam("clientId") int id){
+		Client client = clientService.getClient(id);
+		clientService.delete(client);
+		return "redirect:/clients/";
+	}
 	
 }

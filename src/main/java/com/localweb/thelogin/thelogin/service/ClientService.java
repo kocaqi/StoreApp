@@ -28,4 +28,8 @@ public class ClientService {
     public Client getClient(int id) {
         return clientRepository.getClientById(id);
     }
+
+    public void delete(Client client) {
+        clientRepository.delete(client);
+    }
 }
