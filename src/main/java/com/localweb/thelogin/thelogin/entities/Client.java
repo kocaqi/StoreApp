@@ -31,7 +31,7 @@ public class Client {
     @Column(name = "date_updated")
     private LocalDate dateUpdated;
 
-    @OneToMany(mappedBy = "client_id", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "client_id", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders;
 
@@ -113,7 +113,6 @@ public class Client {
                 ", email='" + email + '\'' +
                 ", dateCreated=" + dateCreated +
                 ", dateUpdated=" + dateUpdated +
-                ", orders=" + orders +
                 '}';
     }
 }

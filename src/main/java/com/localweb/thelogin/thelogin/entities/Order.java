@@ -16,13 +16,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="user_id")
     @LazyCollection(LazyCollectionOption.FALSE)
     private User user_id;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="client_id")
     private Client client_id;
     @Column(name = "amount")
@@ -32,6 +30,7 @@ public class Order {
     @Column(name = "date_updated")
     private LocalDate dateUpdated;
     @OneToMany(mappedBy = "order")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<OrderProduct> orders;
 
     public Order() {
@@ -106,12 +105,9 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", client_id=" + client_id +
                 ", amount=" + amount +
                 ", dateCreated=" + dateCreated +
                 ", dateUpdated=" + dateUpdated +
-                ", orders=" + orders +
                 '}';
     }
 }

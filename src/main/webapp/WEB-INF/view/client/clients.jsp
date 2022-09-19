@@ -29,8 +29,10 @@ Clients:
             <c:url var="updateLink" value="/clients/update">
                 <c:param name="clientId" value="${client.id}"/>
             </c:url>
-
             <c:url var="deleteLink" value="/clients/delete">
+                <c:param name="clientId" value="${client.id}"/>
+            </c:url>
+            <c:url var="createOrder" value="/orders/add">
                 <c:param name="clientId" value="${client.id}"/>
             </c:url>
             <td>${client.firstName}</td>
@@ -43,6 +45,8 @@ Clients:
                 <a href="${updateLink}">Update</a>
                 ||
                 <a href="${deleteLink}">Delete</a>
+                ||
+                <a href="${createOrder}">Create new order</a>
             </td>
         </tr>
     </c:forEach>

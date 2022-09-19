@@ -11,7 +11,7 @@
 <body>
 Orders:
 <br>
-<a href="/orders/add">Add a new Order</a>
+<a href="/orders/addNew">Add a new Order</a>
 
 <hr>
 
@@ -30,7 +30,7 @@ Orders:
     Date Created: ${order.dateCreated} <br>
     Last Update: ${order.dateUpdated} <br>
     <a href="#">Update</a>
-    |
+    ||
     <a href="#">Delete</a>
     <hr>
 </c:forEach>

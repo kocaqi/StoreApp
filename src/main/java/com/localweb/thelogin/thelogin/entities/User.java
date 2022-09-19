@@ -151,7 +151,6 @@ public class User {
                 ", dateUpdated=" + dateUpdated +
                 ", roles=" + roles +
                 ", enabled=" + enabled +
-                ", orders=" + orders +
                 '}';
     }
 

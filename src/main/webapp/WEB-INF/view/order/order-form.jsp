@@ -15,13 +15,17 @@ Add Order
 
 <%--@elvariable id="order" type=""--%>
 <form:form action="saveOrder" modelAttribute="order" method="POST">
-
-    <%--Register the client--%>
-
-    <%--Add products one by one--%>
-        <%--Enter product name--%>
-        <%--Enter product quantity--%>
-
+    <c:url var="selectProduct" value="/orders/selectProduct">
+        <c:param name="orderId" value="${order.id}"/>
+    </c:url>
+    Client: ${order.client_id.firstName} ${order.client_id.lastName} <br>
+    <c:forEach items="${order.orders}" var="client">
+        ${client.product.name} <br>
+        Quantity: ${client.quantity} <br>
+        Price/Unit: ${client.product.price} <br>
+        Total for this product: ${client.amount} <br> <br>
+    </c:forEach>
+    <a href="${selectProduct}">Add Product to this Order</a><br>
     <input type="submit" value="Save"/>
 </form:form>
 

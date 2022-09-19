@@ -1,36 +1,38 @@
 
 package com.localweb.thelogin.thelogin.entities;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class OrderProductKey implements Serializable {
 
-    Order order;
-    Product product;
+    int order_id;
+    int product_id;
 
     public OrderProductKey() {
     }
 
-    public OrderProductKey(Order order, Product product) {
-        this.order = order;
-        this.product = product;
+    public OrderProductKey(int order_id, int product_id) {
+        this.order_id = order_id;
+        this.product_id = product_id;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setOrder_id(int order) {
+        this.order_id = order;
     }
 
-    public Order getOrder() {
-        return order;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setProduct_id(int product) {
+        this.product_id = product;
     }
 
     @Override
@@ -38,19 +40,19 @@ public class OrderProductKey implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderProductKey that = (OrderProductKey) o;
-        return Objects.equals(order, that.order) && Objects.equals(product, that.product);
+        return order_id == that.order_id && product_id == that.product_id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, product);
+        return Objects.hash(order_id, product_id);
     }
 
     @Override
     public String toString() {
         return "OrderProductKey{" +
-                "order=" + order +
-                ", product=" + product +
+                "order=" + order_id +
+                ", product=" + product_id +
                 '}';
     }
 }

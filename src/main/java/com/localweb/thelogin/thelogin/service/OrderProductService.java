@@ -3,6 +3,7 @@ package com.localweb.thelogin.thelogin.service;
 import com.localweb.thelogin.thelogin.dao.OrderProductRepository;
 import com.localweb.thelogin.thelogin.entities.Order;
 import com.localweb.thelogin.thelogin.entities.OrderProduct;
+import com.localweb.thelogin.thelogin.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,9 @@ public class OrderProductService {
 
     public List<OrderProduct> findProductsByOrder(Order order) {
         return orderProductRepository.findProductsByOrder(order);
+    }
+
+    public void save(OrderProduct orderProduct) {
+        orderProductRepository.save(orderProduct);
     }
 }

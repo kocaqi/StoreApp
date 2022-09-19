@@ -5,19 +5,19 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@IdClass(OrderProductKey.class)
+//@IdClass(OrderProductKey.class)
 @Table(name="order_product")
 public class OrderProduct {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+            @Column(name = "id")
+    int id;
     @ManyToOne
-    @Id
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     Order order;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Id
-    @JoinColumn(name="product_id")
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     Product product;
-
     @Column(name = "quantity")
     double quantity;
     @Column(name = "amount")
@@ -27,16 +27,12 @@ public class OrderProduct {
     @Column(name = "date_updated")
     LocalDate dateUpdated;
 
-    public OrderProduct() {
+    public Product getProduct() {
+        return product;
     }
 
-    public OrderProduct(Order order, Product product, double quantity, double amount, LocalDate dateCreated, LocalDate dateUpdated) {
-        this.order = order;
+    public void setProduct(Product product) {
         this.product = product;
-        this.quantity = quantity;
-        this.amount = amount;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
     }
 
     public Order getOrder() {
@@ -47,12 +43,22 @@ public class OrderProduct {
         this.order = order;
     }
 
-    public Product getProduct() {
-        return product;
+    public OrderProduct() {
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public OrderProduct(double quantity, double amount, LocalDate dateCreated, LocalDate dateUpdated) {
+        this.quantity = quantity;
+        this.amount = amount;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getQuantity() {
@@ -90,8 +96,7 @@ public class OrderProduct {
     @Override
     public String toString() {
         return "OrderProduct{" +
-                ", order=" + order +
-                ", product=" + product +
+                "id=" + id +
                 ", quantity=" + quantity +
                 ", amount=" + amount +
                 ", dateCreated=" + dateCreated +

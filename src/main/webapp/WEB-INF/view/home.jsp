@@ -14,8 +14,7 @@
     <title>Home Page</title>
 </head>
 <body>
-Welcome
-<security:authentication property="principal.username"/>
+Welcome ${user.firstName} ${user.lastName}
 <br>
 <br> <%--You are logged in as:
 <security:authentication property="principal.role"/>

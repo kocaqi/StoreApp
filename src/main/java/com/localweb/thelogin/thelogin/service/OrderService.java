@@ -21,4 +21,12 @@ public class OrderService {
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
+
+    public Order getOrder(int id) {
+        return orderRepository.findOrderById(id);
+    }
+
+    public void save(Order order) {
+        orderRepository.save(order);
+    }
 }

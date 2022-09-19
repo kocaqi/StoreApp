@@ -1,6 +1,9 @@
 
 package com.localweb.thelogin.thelogin.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -18,19 +21,20 @@ public class Product {
     @Column(name = "price")
     private double price;
     @Column(name = "stock")
-    private int stock;
+    private double stock;
     @Column(name = "date_created")
     private LocalDate dateCreated;
     @Column(name = "date_updated")
     private LocalDate dateUpdated;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<OrderProduct> orders;
 
     public Product() {
     }
 
-    public Product(int id, String name, double price, int stock, LocalDate dateCreated, LocalDate dateUpdated) {
+    public Product(int id, String name, double price, double stock, LocalDate dateCreated, LocalDate dateUpdated) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -63,11 +67,11 @@ public class Product {
         this.price = price;
     }
 
-    public int getStock() {
+    public double getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(double stock) {
         this.stock = stock;
     }
 
