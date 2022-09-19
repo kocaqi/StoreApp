@@ -45,6 +45,7 @@ public class UserController {
         user.setDateUpdated(LocalDate.now());
         user.setEnabled(1);
         user.addRole(roleService.findRoleByName(role));
+        roleService.save(roleService.findRoleByName(role));
         userService.save(user);
         return "redirect:/users/";
     }
@@ -57,8 +58,10 @@ public class UserController {
     }
 
     @PostMapping("/updateUser")
-    public String updateUser(@ModelAttribute("user") User user){
+    public String updateUser(@ModelAttribute("user") User user, @RequestParam("role") String role){
         user.setDateUpdated(LocalDate.now());
+        user.addRole(roleService.findRoleByName(role));
+        roleService.save(roleService.findRoleByName(role));
         userService.save(user);
         return "redirect:/users/";
     }
