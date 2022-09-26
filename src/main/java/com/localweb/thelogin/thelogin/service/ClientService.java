@@ -2,6 +2,7 @@ package com.localweb.thelogin.thelogin.service;
 
 import com.localweb.thelogin.thelogin.dao.ClientRepository;
 import com.localweb.thelogin.thelogin.entities.Client;
+import com.localweb.thelogin.thelogin.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,9 @@ public class ClientService {
 
     public void delete(Client client) {
         clientRepository.delete(client);
+    }
+
+    public List<Client> findAllByUser(User user) {
+        return clientRepository.findAllByTheUser(user);
     }
 }

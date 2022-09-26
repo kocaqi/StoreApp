@@ -19,7 +19,7 @@ public class Order {
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="user_id")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private User user_id;
+    private User user;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="client_id")
     private Client client_id;
@@ -31,14 +31,14 @@ public class Order {
     private LocalDate dateUpdated;
     @OneToMany(mappedBy = "order")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<OrderProduct> orders;
+    private List<OrderProduct> orderProducts;
 
     public Order() {
     }
 
-    public Order(User user_id, Client client_id, double amount, LocalDate dateCreated,
+    public Order(User user, Client client_id, double amount, LocalDate dateCreated,
                  LocalDate dateUpdated) {
-        this.user_id = user_id;
+        this.user = user;
         this.client_id = client_id;
         this.amount = amount;
         this.dateCreated = dateCreated;
@@ -53,12 +53,12 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user) {
-        this.user_id = user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Client getClient_id() {
@@ -93,12 +93,12 @@ public class Order {
         this.dateUpdated = dateUpdated;
     }
 
-    public List<OrderProduct> getOrders() {
-        return orders;
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
     }
 
-    public void setOrders(List<OrderProduct> orders) {
-        this.orders = orders;
+    public void setOrderProducts(List<OrderProduct> orders) {
+        this.orderProducts = orders;
     }
 
     @Override

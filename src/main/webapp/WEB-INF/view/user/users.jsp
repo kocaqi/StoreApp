@@ -13,7 +13,7 @@
 Users:
 <br>
 <a href="/users/add">Add a new User</a>
-
+<br> <br>
 <table border="1px">
 	<tr>
 		<th>Fist Name</th>
@@ -30,9 +30,9 @@ Users:
 		<c:url var="updateLink" value="/users/update">
 			<c:param name="userId" value="${user.id}"/>
 		</c:url>
-		<c:url var="deleteLink" value="/users/delete">
+		<%--<c:url var="deleteLink" value="/users/delete">
 			<c:param name="userId" value="${user.id}"/>
-		</c:url>
+		</c:url>--%>
 		<td>${user.firstName}</td>
         <td>${user.lastName}</td>
         <td>${user.email}</td>
@@ -41,17 +41,12 @@ Users:
         <td>${user.dateUpdated}</td>
 		<td>
 			<a href="${updateLink}">Update</a>
-			||
-			<a href="${deleteLink}">Delete</a>
+			<%--||
+			<a href="${deleteLink}">Delete</a>--%>
 		</td>
 	</tr>
 	</c:forEach>
-	
-	
-	
 </table>
-
-
 
 <a href="${pageContext.request.contextPath}/">Back to Main Page</a>
 <br>

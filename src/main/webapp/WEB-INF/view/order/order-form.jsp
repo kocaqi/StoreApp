@@ -19,14 +19,13 @@ Add Order
         <c:param name="orderId" value="${order.id}"/>
     </c:url>
     Client: ${order.client_id.firstName} ${order.client_id.lastName} <br>
-    <c:forEach items="${order.orders}" var="client">
-        ${client.product.name} <br>
-        Quantity: ${client.quantity} <br>
-        Price/Unit: ${client.product.price} <br>
-        Total for this product: ${client.amount} <br> <br>
+    <c:forEach items="${order.orderProducts}" var="order_product">
+        ${order_product.product.name} <br>
+        Quantity: ${order_product.quantity} <br>
+        Price/Unit: ${order_product.product.price} <br>
+        Total for this product: ${order_product.amount} <br> <br>
     </c:forEach>
     <a href="${selectProduct}">Add Product to this Order</a><br>
-    <input type="submit" value="Save"/>
 </form:form>
 
 

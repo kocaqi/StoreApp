@@ -17,7 +17,7 @@
 Order #${orderProduct.order.id} <br>
 Please select quantity for product "${orderProduct.product.name}" <br>
 <%--@elvariable id="orderProduct" type=""--%>
-<form:form action="saveProduct" modelAttribute="orderProduct" method="GET">
+<form:form action="saveProduct" modelAttribute="orderProduct" method="POST">
     <form:hidden name="orderId" value="${orderProduct.order.id}" path="order"/>
     <form:hidden name="productId" value="${orderProduct.product.id}" path="product"/>
     <form:input type="number" path="quantity"/>

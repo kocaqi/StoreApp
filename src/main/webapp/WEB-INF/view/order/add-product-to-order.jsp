@@ -14,10 +14,6 @@
 </head>
 <body>
 Add Product to Order #${order.id}
-<form:form>
-    <input type="text" name="searchProduct" placeholder="Search Product"/>
-    <input type="submit" value="Search"/>
-</form:form>
 <br>
 <table border="1">
     <tr>
@@ -26,15 +22,15 @@ Add Product to Order #${order.id}
         <th>Stock</th>
         <th>Action</th>
     </tr>
-    <c:forEach items="${products}" var="product">
+    <c:forEach items="${products}" var="order_product">
         <tr>
             <c:url var="addProductToOrder" value="/orders/addProduct">
-                <c:param name="productId" value="${product.id}"/>
+                <c:param name="productId" value="${order_product.id}"/>
                 <c:param name="orderId" value="${order.id}"/>
             </c:url>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>${product.stock}</td>
+            <td>${order_product.name}</td>
+            <td>${order_product.price}</td>
+            <td>${order_product.stock}</td>
             <td><a href="${addProductToOrder}">Add To Order</a></td>
         </tr>
     </c:forEach>

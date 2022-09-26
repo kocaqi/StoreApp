@@ -24,29 +24,29 @@ Clients:
         <th>Action</th>
     </tr>
 
-    <c:forEach items="${clients}" var="client">
+    <c:forEach items="${clients}" var="order_product">
         <tr>
             <c:url var="updateLink" value="/clients/update">
-                <c:param name="clientId" value="${client.id}"/>
+                <c:param name="clientId" value="${order_product.id}"/>
             </c:url>
-            <c:url var="deleteLink" value="/clients/delete">
-                <c:param name="clientId" value="${client.id}"/>
-            </c:url>
-            <c:url var="createOrder" value="/orders/add">
-                <c:param name="clientId" value="${client.id}"/>
-            </c:url>
-            <td>${client.firstName}</td>
-            <td>${client.lastName}</td>
-            <td>${client.theUser.firstName} ${client.theUser.lastName}</td>
-            <td>${client.email}</td>
-            <td>${client.dateCreated}</td>
-            <td>${client.dateUpdated}</td>
+            <td>${order_product.firstName}</td>
+            <td>${order_product.lastName}</td>
+            <td>${order_product.theUser.firstName} ${order_product.theUser.lastName}</td>
+            <td>${order_product.email}</td>
+            <td>${order_product.dateCreated}</td>
+            <td>${order_product.dateUpdated}</td>
             <td>
                 <a href="${updateLink}">Update</a>
                 ||
-                <a href="${deleteLink}">Delete</a>
-                ||
-                <a href="${createOrder}">Create new order</a>
+
+                <form:form method="post" action="/orders/add">
+                    <%--<c:url var="createOrder" value="/orders/add">
+                        <c:param name="clientId" value="${order_product.id}"/>
+                    </c:url>--%>
+                    <input type="hidden" value="${order_product.id}" name="clientId">
+                    <input  type="submit" value="New Order">
+                    <%--<a href="${createOrder}">Create new order</a>--%>
+                </form:form>
             </td>
         </tr>
     </c:forEach>

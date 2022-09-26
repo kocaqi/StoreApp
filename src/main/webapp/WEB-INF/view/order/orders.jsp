@@ -11,27 +11,28 @@
 <body>
 Orders:
 <br>
-<a href="/orders/addNew">Add a new Order</a>
+<a href="/clients/">Add new Order (Select Client for new Order)</a>
 
 <hr>
 
 <c:forEach items="${orders}" var="order">
+    <c:url var="selectProduct" value="/orders/selectProduct">
+        <c:param name="orderId" value="${order.id}"/>
+    </c:url>
     Order id: ${order.id} <br>
-    User: ${order.user_id.firstName} ${order.user_id.lastName}<br>
+    User: ${order.user.firstName} ${order.user.lastName}<br>
     Client: ${order.client_id.firstName} ${order.client_id.lastName} <br> <br>
     Products:  <br> <br>
-    <c:forEach items="${order.orders}" var="client">
-        ${client.product.name} <br>
-        Quantity: ${client.quantity} <br>
-        Price/Unit: ${client.product.price} <br>
-        Total for this product: ${client.amount} <br> <br>
+    <c:forEach items="${order.orderProducts}" var="order_product">
+        ${order_product.product.name} <br>
+        Quantity: ${order_product.quantity} <br>
+        Price/Unit: ${order_product.product.price} <br>
+        Total for this product: ${order_product.amount} <br> <br>
     </c:forEach>
     Total for this order: ${order.amount} <br>
     Date Created: ${order.dateCreated} <br>
     Last Update: ${order.dateUpdated} <br>
-    <a href="#">Update</a>
-    ||
-    <a href="#">Delete</a>
+    <a href="${selectProduct}">Add Product to this Order</a>
     <hr>
 </c:forEach>
 

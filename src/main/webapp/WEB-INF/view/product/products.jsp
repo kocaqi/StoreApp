@@ -23,26 +23,20 @@ Products:
         <th>Action</th>
     </tr>
 
-    <c:forEach items="${products}" var="client">
+    <c:forEach items="${products}" var="order_product">
         <tr>
 
             <c:url var="updateLink" value="/products/update">
-                <c:param name="productId" value="${client.id}"/>
+                <c:param name="productId" value="${order_product.id}"/>
             </c:url>
 
-            <c:url var="deleteLink" value="/products/delete">
-                <c:param name="productId" value="${client.id}"/>
-            </c:url>
-
-            <td>${client.name}</td>
-            <td>${client.price}</td>
-            <td>${client.stock}</td>
-            <td>${client.dateCreated}</td>
-            <td>${client.dateUpdated}</td>
+            <td>${order_product.name}</td>
+            <td>${order_product.price}</td>
+            <td>${order_product.stock}</td>
+            <td>${order_product.dateCreated}</td>
+            <td>${order_product.dateUpdated}</td>
             <td>
                 <a href="${updateLink}">Update</a>
-                ||
-                <a href="${deleteLink}">Delete</a>
             </td>
         </tr>
     </c:forEach>

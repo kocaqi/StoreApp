@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,16 +27,25 @@ public class OrderController {
     UserService userService;
 
     @GetMapping("/")
-    public String showOrders(Model model) {
-        List<Order> orders = orderService.findAll();
+    public String showOrders(Model model, Principal principal) {
+        String email = principal.getName();
+        User user = userService.findUserByEmail(email);
+        List<Order> orders = new ArrayList<>();
+
+        if(user.getRoles().contains("ROLE_ADMIN")){
+            orders = orderService.findAll();
+        }
+        else{
+            orders = orderService.findAllByUser(user);
+        }
         for (Order order : orders) {
-            order.setOrders(orderProductService.findProductsByOrder(order));
+            order.setOrderProducts(orderProductService.findProductsByOrder(order));
         }
         model.addAttribute("orders", orders);
         return "order/orders";
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public String add(@RequestParam("clientId") int id, Model model, Principal principal) {
         Client client = clientService.getClient(id);
         Order order = new Order();
@@ -44,7 +54,7 @@ public class OrderController {
         order.setDateUpdated(LocalDate.now());
         String email = principal.getName();
         User user = userService.findUserByEmail(email);
-        order.setUser_id(user);
+        order.setUser(user);
         orderService.save(order);
         model.addAttribute("order", order);
         return "order/order-form";
@@ -59,7 +69,7 @@ public class OrderController {
         return "order/add-product-to-order";
     }
 
-    @GetMapping("/addProduct")
+    @PostMapping("/addProduct")
     public String addProduct(@RequestParam("productId") int productId,
                              @RequestParam("orderId") int orderId,
                              Model model) {
@@ -72,20 +82,25 @@ public class OrderController {
         return "order/select-product-quantity";
     }
 
-    @GetMapping("/saveProduct")
-    public String saveQuantity(
+    @PostMapping("/saveProduct")
+    public String saveProduct(
             @RequestParam("quantity") double quantity,
-            @ModelAttribute("orderProduct") OrderProduct orderProduct) {
+            @ModelAttribute("orderProduct") OrderProduct orderProduct,
+            Model model) {
         orderProduct.setQuantity(quantity);
         double amount = quantity * orderProduct.getProduct().getPrice();
         orderProduct.setAmount(amount);
         double orderAmount = orderProduct.getOrder().getAmount() + amount;
         orderProduct.getOrder().setAmount(orderAmount);
         orderProduct.getProduct().setStock(orderProduct.getProduct().getStock() - quantity);
+        orderProduct.setDateCreated(LocalDate.now());
+        orderProduct.setDateUpdated(LocalDate.now());
         orderProductService.save(orderProduct);
         orderService.save(orderProduct.getOrder());
         productService.save(orderProduct.getProduct());
-        return "redirect:/orders/";
+        model.addAttribute("order", orderProduct.getOrder());
+        model.addAttribute("products", orderProduct.getOrder().getOrderProducts());
+        return "order/show-single-order";
     }
 
 }

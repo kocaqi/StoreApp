@@ -41,7 +41,7 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Client> clients;
 
-    @OneToMany(mappedBy = "user_id",
+    @OneToMany(mappedBy = "user",
             cascade = {CascadeType.DETACH, CascadeType.MERGE,
                     CascadeType.PERSIST, CascadeType.REFRESH})
     @LazyCollection(LazyCollectionOption.FALSE)
